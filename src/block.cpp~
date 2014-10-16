@@ -1,0 +1,7 @@
+#include "block.h"
+
+	virtual Block::Block(short id):
+		id_block(id)
+	{
+	}
+		

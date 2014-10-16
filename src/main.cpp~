@@ -1,0 +1,7 @@
+#include "dirtblock.h"
+
+int main(){
+
+	Block d;
+
+}
