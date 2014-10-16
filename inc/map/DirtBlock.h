@@ -8,6 +8,7 @@ class DirtBlock : public Block {
 	public:
 
 		DirtBlock();
+        void afficher() const;
 
 	private:
 

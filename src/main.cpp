@@ -1,7 +1,9 @@
+#include <iostream>
 #include "dirtblock.h"
 
 int main(){
 
-	DirtBlock d;
-
+std::cout << "Hello World" << std::endl;
+DirtBlock dirtBlock;
+dirtBlock.afficher();
 }
