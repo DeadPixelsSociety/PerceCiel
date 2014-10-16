@@ -1,5 +1,5 @@
 #include <iostream>
-#include "dirtblock.h"
+#include "map/DirtBlock.h"
 
 int main(){
 
