@@ -1,0 +1,23 @@
+#ifndef DIRTBLOCK_H
+#define DIRTBLOCK_H
+
+class DirtBlock : public Block {
+	
+	public:
+
+		DirtBlock();
+
+	private:
+
+};
+
+
+
+
+
+
+
+
+
+
+#endif
