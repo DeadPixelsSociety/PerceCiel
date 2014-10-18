@@ -1,7 +1,7 @@
 #ifndef DIRTBLOCK_H
 #define DIRTBLOCK_H
 
-#include "block.h"
+#include "Block.h"
 
 class DirtBlock : public Block {
 	

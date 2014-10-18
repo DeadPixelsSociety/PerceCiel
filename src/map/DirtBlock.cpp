@@ -1,4 +1,4 @@
-#include "map/dirtblock.h"
+#include "map/DirtBlock.h"
 #include <iostream>
 
 	DirtBlock::DirtBlock() : Block(1)
