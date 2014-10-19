@@ -26,7 +26,7 @@ public:
 	void setNextState(GameStates next);
 
 protected:
-	void handleEvents(sf::RenderWindow &window);
+	void handleEvents();
 	void mainLoop();
 	void changeState();
 	void clean();

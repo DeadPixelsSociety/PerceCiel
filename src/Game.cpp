@@ -19,6 +19,7 @@ void Game::mainLoop() {
 	//m_window.setPosition(sf::Vector2i(300, 150));
 	m_window.setVerticalSyncEnabled(false);
 
+	// Tests
 	sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
@@ -34,13 +35,14 @@ void Game::mainLoop() {
 		loops = 0;
 
 		while (clock.getElapsedTime().asMilliseconds() > nextGameTick && loops < MAX_FRAMESKIP) {
-            handleEvents(m_window);   // 			=> events manager
+            handleEvents();   // 			=> events manager
             // m_entity->update();			=> update position every tick of the game
 
             nextGameTick += SKIP_TICKS;
             loops++;
         }
 
+        // Tests
         m_window.clear();
         m_window.draw(shape);
         m_window.display();
@@ -68,16 +70,18 @@ void Game::changeState() {
 	// 		Fenetre de config
 }
 
-void Game::handleEvents(sf::RenderWindow &window) {
+
+//@FIXME
+void Game::handleEvents() {
 	sf::Event event;
 
-	while(window.pollEvent(event)) {
+	while(m_window.pollEvent(event)) {
 		//if(currentState == GAME_STATE_PAUSE)
 		//	m_entity.menu_handleEvent(event)	Gestion des event pendant la pause si menu
 
 		switch(event.type) {
 			case sf::Event::Closed:
-				setNextState(GAME_STATE_EXIT);
+				//setNextState(GAME_STATE_EXIT);
 				break;
 
 			/*
