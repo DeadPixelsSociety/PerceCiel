@@ -7,7 +7,7 @@ GCC := g++
 GCC_ARGS := -std=gnu++11 -Wall -Wextra
 SRC_FILES := $(wildcard $(SRC)/**/*.cpp) $(wildcard $(SRC)/*.cpp)
 OBJ_FILES := $(patsubst $(SRC)/%%/%.cpp,$(OBJ)/%%/%.o,$(SRC_FILES))
-LIBS := #-lsfml-graphics -lsfml-window -lsfml-system 
+LIBS := -lsfml-graphics -lsfml-window -lsfml-system 
 TREE := $(OBJ) $(BIN)
 
 all: $(TREE) $(EXE)
