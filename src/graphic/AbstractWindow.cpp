@@ -9,9 +9,9 @@ AbstractWindow::AbstractWindow(const char* title, AbstractKeyboardEventHandler* 
 }
 
 AbstractWindow::~AbstractWindow(){
-    delete m_window;
     delete m_keyboardEventHandler;
-    delete m_mouseEventHandler; }
+    delete m_mouseEventHandler;
+}
 
 void AbstractWindow::close(){
     m_window->close();
