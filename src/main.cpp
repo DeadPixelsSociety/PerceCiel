@@ -46,6 +46,17 @@ class MouseEventHandler: public AbstractMouseEventHandler{
 int main() {
 
     AbstractWindow w("Hello Window !", new KeyboardEventHandler(), new MouseEventHandler());
+
+    // DRAW A RECTANGLE (Width : 100, Height : 100, Color : RED)
+    sf::RectangleShape drawable1(sf::Vector2f(100, 100));
+    drawable1.setFillColor(sf::Color(255, 0, 0));
+    w.addDrawable(drawable1);
+
+    // DRAW A CIRCLE (Radius : 50, Color : GREEN)
+    sf::CircleShape drawable2(50);
+    drawable2.setFillColor(sf::Color(0, 255, 0));
+    w.addDrawable(drawable2);
+
     w.show();
 
 	return 0;
