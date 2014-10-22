@@ -13,18 +13,28 @@ AbstractWindow::~AbstractWindow(){
     delete m_mouseEventHandler;
 }
 
+void AbstractWindow::addDrawable(const sf::Drawable& drawable){
+    m_drawables.push_back(&drawable);
+}
+
+void AbstractWindow::clear(){
+    m_window->clear();
+}
+
 void AbstractWindow::close(){
     m_window->close();
 }
 
-void AbstractWindow::show(){
-    m_window = new sf::RenderWindow(sf::VideoMode(800, 600), m_title);
-    handleEvents();
+void AbstractWindow::display(){
+    m_window->display();
 }
 
 void AbstractWindow::handleEvents(){
     sf::Event event;
     while(m_window->isOpen()){
+        clear();
+        redraw();
+        display();
         while(m_window->waitEvent(event)){
             switch(event.type){
                 case sf::Event::Closed:
@@ -48,6 +58,20 @@ void AbstractWindow::handleEvents(){
                 default:
                     break;
             }
+            clear();
+            redraw();
+            display();
         }
     }
+}
+
+void AbstractWindow::redraw(){
+    for(unsigned int i=0; i<m_drawables.size(); i++){
+        m_window->draw(*(m_drawables[i]));
+    }
+}
+
+void AbstractWindow::show(){
+    m_window = new sf::RenderWindow(sf::VideoMode(800, 600), m_title);
+    handleEvents();
 }
