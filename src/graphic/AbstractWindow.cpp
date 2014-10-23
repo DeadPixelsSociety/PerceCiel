@@ -1,10 +1,12 @@
 #include <iostream>
 #include "graphic/AbstractWindow.h"
 
-AbstractWindow::AbstractWindow(const char* title, AbstractKeyboardEventHandler* keyboardEventHandler, AbstractMouseEventHandler* mouseEventHandler):
+AbstractWindow::AbstractWindow(const char* title, sf::Vector2i dimensions, AbstractKeyboardEventHandler* keyboardEventHandler, AbstractMouseEventHandler* mouseEventHandler, bool isFullScreen):
     m_keyboardEventHandler(keyboardEventHandler),
     m_mouseEventHandler(mouseEventHandler),
-    m_title(title)
+    m_isFullScreen(isFullScreen),
+    m_title(title),
+    m_dimensions(dimensions)
 {
 }
 
@@ -72,6 +74,6 @@ void AbstractWindow::redraw(){
 }
 
 void AbstractWindow::show(){
-    m_window = new sf::RenderWindow(sf::VideoMode(800, 600), m_title);
+    m_window = new sf::RenderWindow(sf::VideoMode(m_dimensions.x, m_dimensions.y), m_title, m_isFullScreen ? sf::Style::Fullscreen : sf::Style::Resize);
     handleEvents();
 }

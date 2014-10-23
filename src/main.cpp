@@ -8,11 +8,14 @@ class KeyboardEventHandler: public AbstractKeyboardEventHandler{
     public:
         KeyboardEventHandler():
             AbstractKeyboardEventHandler()
-        {
-        }
+    {
+    }
 
         void onKeyPressed(AbstractWindow* window, sf::Event event){
             std::cout << "Key pressed" << std::endl;
+            if(event.key.code ==sf::Keyboard::Escape){
+                window->close();
+            }
         }
 
         void onKeyReleased(AbstractWindow* window, sf::Event event){
@@ -26,9 +29,8 @@ class MouseEventHandler: public AbstractMouseEventHandler{
     public:
         MouseEventHandler():
             AbstractMouseEventHandler()
-        {
-        }
-
+    {
+    } 
         void onButtonPressed(AbstractWindow* window, sf::Event event){
             std::cout << "Mouse pressed !" << std::endl;
         }
@@ -45,7 +47,11 @@ class MouseEventHandler: public AbstractMouseEventHandler{
 
 int main() {
 
-    AbstractWindow w("Hello Window !", new KeyboardEventHandler(), new MouseEventHandler());
+    // FULLSCREEN WINDOW (EXIT WITH ESCAPE OR MOUSE CLICK)
+    // AbstractWindow w("Hello Window !", sf::Vector2i(800, 600), new KeyboardEventHandler(), new MouseEventHandler(), true);
+
+    // NORMAL WINDOW WITH WIDTH 800 AND HEIGHT 600
+    AbstractWindow w("Hello Window !", sf::Vector2i(800, 600), new KeyboardEventHandler(), new MouseEventHandler());
 
     // DRAW A RECTANGLE (Width : 100, Height : 100, Color : RED)
     sf::RectangleShape drawable1(sf::Vector2f(100, 100));
@@ -59,5 +65,5 @@ int main() {
 
     w.show();
 
-	return 0;
+    return 0;
 }
