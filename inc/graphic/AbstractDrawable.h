@@ -8,6 +8,7 @@ class AbstractDrawable: public sf::Drawable{
 
     public:
         AbstractDrawable();
+        ~AbstractDrawable();
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
         virtual void initializeDrawables() = 0;
 
