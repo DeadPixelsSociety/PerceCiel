@@ -1,17 +1,19 @@
 #ifndef BLOCK_H
 #define BLOCK_H
 
-class Block{
-	public:
+#include "graphic/AbstractWindow.h"
+#include "graphic/AbstractDrawable.h"
+#include <vector>
 
+class Block: public AbstractDrawable{
+
+	public:
 		Block(short id);
+        virtual void initializeDrawables() = 0;
 
 	private:
 		short id_block;
 
-
-	protected: 
-		
 };
 
 

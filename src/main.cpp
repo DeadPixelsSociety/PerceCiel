@@ -2,6 +2,7 @@
 #include "graphic/AbstractWindow.h"
 #include "events/AbstractKeyboardEventHandler.h"
 #include "events/AbstractMouseEventHandler.h"
+#include "map/DirtBlock.h"
 
 class KeyboardEventHandler: public AbstractKeyboardEventHandler{
 
@@ -51,17 +52,10 @@ int main() {
     // AbstractWindow w("Hello Window !", sf::Vector2i(800, 600), new KeyboardEventHandler(), new MouseEventHandler(), true);
 
     // NORMAL WINDOW WITH WIDTH 800 AND HEIGHT 600
-    AbstractWindow w("Hello Window !", sf::Vector2i(800, 600), new KeyboardEventHandler(), new MouseEventHandler());
+    AbstractWindow w("Hello Window !", sf::Vector2i(800, 600), new KeyboardEventHandler(), new MouseEventHandler(), false);
 
-    // DRAW A RECTANGLE (Width : 100, Height : 100, Color : RED)
-    sf::RectangleShape drawable1(sf::Vector2f(100, 100));
-    drawable1.setFillColor(sf::Color(255, 0, 0));
-    w.addDrawable(drawable1);
-
-    // DRAW A CIRCLE (Radius : 50, Color : GREEN)
-    sf::CircleShape drawable2(50);
-    drawable2.setFillColor(sf::Color(0, 255, 0));
-    w.addDrawable(drawable2);
+    DirtBlock dirt;
+    w.addDrawable(dirt);
 
     w.show();
 

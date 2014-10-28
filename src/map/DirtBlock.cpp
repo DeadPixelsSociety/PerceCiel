@@ -1,10 +1,12 @@
 #include "map/DirtBlock.h"
 #include <iostream>
 
-	DirtBlock::DirtBlock() : Block(1)
-	{
-	}
+DirtBlock::DirtBlock():
+    Block(1)
+{
+    initializeDrawables();
+}
 
-    void DirtBlock::afficher() const {
-        std::cout << "DirtBlock : id : "<< std::endl;
-    }
+void DirtBlock::initializeDrawables(){
+    m_drawables.push_back(new sf::RectangleShape(sf::Vector2f(25, 25)));
+}
