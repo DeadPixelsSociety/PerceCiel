@@ -3,6 +3,7 @@
 #include "events/AbstractKeyboardEventHandler.h"
 #include "events/AbstractMouseEventHandler.h"
 #include "map/DirtBlock.h"
+#include "graphic/AnimatedSprite.h"
 
 class KeyboardEventHandler: public AbstractKeyboardEventHandler{
 

@@ -11,7 +11,7 @@ class AbstractWindow{
     public:
         AbstractWindow(const char* title, sf::Vector2i dimensions, AbstractKeyboardEventHandler* keyboardEventHandler, AbstractMouseEventHandler* mouseEventHandler, bool isFullScreen = false);
         virtual ~AbstractWindow();
-        void addDrawable(const sf::Drawable& drawable);
+        void addDrawable(sf::Drawable& drawable);
         void clear();
         void close();
         void display();
@@ -25,7 +25,7 @@ class AbstractWindow{
         const char* m_title;
         sf::RenderWindow* m_window;
         sf::Vector2i m_dimensions;
-        std::vector<const sf::Drawable*> m_drawables;
+        std::vector<sf::Drawable*> m_drawables;
         void handleEvents();
 
 };

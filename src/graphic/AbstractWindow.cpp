@@ -15,7 +15,7 @@ AbstractWindow::~AbstractWindow(){
     delete m_mouseEventHandler;
 }
 
-void AbstractWindow::addDrawable(const sf::Drawable& drawable){
+void AbstractWindow::addDrawable(sf::Drawable& drawable){
     m_drawables.push_back(&drawable);
 }
 
