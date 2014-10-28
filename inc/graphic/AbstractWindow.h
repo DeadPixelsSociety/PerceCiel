@@ -6,12 +6,17 @@
 #include "events/AbstractKeyboardEventHandler.h"
 #include "events/AbstractMouseEventHandler.h"
 
+#define TICKS_PER_SEC 25
+#define SKIP_TICKS 1000 / TICKS_PER_SEC
+#define MAX_FRAMESKIP 2
+
 class AbstractWindow{
 
     public:
         AbstractWindow(const char* title, sf::Vector2i dimensions, AbstractKeyboardEventHandler* keyboardEventHandler, AbstractMouseEventHandler* mouseEventHandler, bool isFullScreen = false);
         virtual ~AbstractWindow();
         void addDrawable(sf::Drawable& drawable);
+        sf::Drawable* getDrawableAt(int index);
         void clear();
         void close();
         void display();
