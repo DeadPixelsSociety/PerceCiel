@@ -14,9 +14,9 @@ class AbstractWindow{
 
     public:
         AbstractWindow(const char* title, sf::Vector2i dimensions, AbstractKeyboardEventHandler* keyboardEventHandler, AbstractMouseEventHandler* mouseEventHandler, bool isFullScreen = false);
+        sf::Drawable* getDrawableAt(int index);
         virtual ~AbstractWindow();
         void addDrawable(sf::Drawable& drawable);
-        sf::Drawable* getDrawableAt(int index);
         void clear();
         void close();
         void display();

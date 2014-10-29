@@ -1,5 +1,6 @@
 #include <iostream>
 #include "graphic/AbstractWindow.h"
+#include "graphic/AnimatedSprite.h"
 
 AbstractWindow::AbstractWindow(const char* title, sf::Vector2i dimensions, AbstractKeyboardEventHandler* keyboardEventHandler, AbstractMouseEventHandler* mouseEventHandler, bool isFullScreen):
     m_keyboardEventHandler(keyboardEventHandler),
@@ -8,6 +9,7 @@ AbstractWindow::AbstractWindow(const char* title, sf::Vector2i dimensions, Abstr
     m_title(title),
     m_dimensions(dimensions)
 {
+    m_window = new sf::RenderWindow();
 }
 
 AbstractWindow::~AbstractWindow(){
@@ -15,12 +17,12 @@ AbstractWindow::~AbstractWindow(){
     delete m_mouseEventHandler;
 }
 
-void AbstractWindow::addDrawable(sf::Drawable& drawable){
-    m_drawables.push_back(&drawable);
-}
-
 sf::Drawable* AbstractWindow::getDrawableAt(int index) {
     return m_drawables.at(index);
+}
+
+void AbstractWindow::addDrawable(sf::Drawable& drawable){
+    m_drawables.push_back(&drawable);
 }
 
 void AbstractWindow::clear(){
@@ -37,6 +39,7 @@ void AbstractWindow::display(){
 
 void AbstractWindow::handleEvents(){
     sf::Event event;
+
     /*
     while(m_window->isOpen()){
         clear();
@@ -73,8 +76,8 @@ void AbstractWindow::handleEvents(){
     int loops;
     sf::Int32 nextGameTick = clock.getElapsedTime().asMilliseconds();
 
-    clear();
-    redraw();
+    /*clear();
+    redraw();*/
     while(m_window->isOpen()) {
         loops = 0;
         std::cout << "Display update" << std::endl; // Display wich depends on computer
@@ -148,6 +151,6 @@ void AbstractWindow::redraw(){
 }
 
 void AbstractWindow::show(){
-    m_window = new sf::RenderWindow(sf::VideoMode(m_dimensions.x, m_dimensions.y), m_title, m_isFullScreen ? sf::Style::Fullscreen : sf::Style::Resize);
+    m_window->create(sf::VideoMode(m_dimensions.x, m_dimensions.y), m_title, m_isFullScreen ? sf::Style::Fullscreen : sf::Style::Resize);
     handleEvents();
 }
