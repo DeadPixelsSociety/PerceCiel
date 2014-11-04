@@ -66,7 +66,7 @@ int main() {
     AbstractWindow w("Hello Window !", sf::Vector2i(800, 600), new KeyboardEventHandler(), new MouseEventHandler(), false);
 
     sf::Texture heroTexture = TextureLoader::getSingleton()->loadFromFile("res/hero.png");
-    AnimatedSprite hero(heroTexture);
+    AnimatedSprite hero(heroTexture, sf::IntRect(0, 64, 32, 32));
 
     Animation animationDown(sf::IntRect(0, 0, 32, 32));
     animationDown.addFrame(sf::IntRect(32, 0, 32, 32));

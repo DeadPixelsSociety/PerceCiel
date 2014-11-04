@@ -7,7 +7,7 @@
 class AnimatedSprite: public sf::Sprite{
 
     public:
-        AnimatedSprite(sf::Texture& texture);
+        AnimatedSprite(sf::Texture& texture, sf::IntRect defaultFrame);
         ~AnimatedSprite();
         void addAnimation(int key, Animation& animation);
         void nextFrame();
@@ -15,6 +15,7 @@ class AnimatedSprite: public sf::Sprite{
 
     private:
         Animation* m_currentAnimation;
+        sf::IntRect m_defaultFrame;
         std::map<int, Animation*> m_animations;
 
 };

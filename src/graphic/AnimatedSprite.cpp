@@ -2,11 +2,13 @@
 #include "graphic/TextureLoader.h"
 #include <iostream>
 
-AnimatedSprite::AnimatedSprite(sf::Texture& texture):
+AnimatedSprite::AnimatedSprite(sf::Texture& texture, sf::IntRect defaultFrame):
     sf::Sprite(),
-    m_currentAnimation(NULL)
+    m_currentAnimation(NULL),
+    m_defaultFrame(defaultFrame)
 {
     setTexture(texture);
+    setTextureRect(m_defaultFrame);
 }
 
 AnimatedSprite::~AnimatedSprite(){
