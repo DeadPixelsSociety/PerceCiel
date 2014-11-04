@@ -80,13 +80,11 @@ void AbstractWindow::handleEvents(){
     redraw();*/
     while(m_window->isOpen()) {
         loops = 0;
-        std::cout << "Display update" << std::endl; // Display wich depends on computer
 
         while (clock.getElapsedTime().asMilliseconds() > nextGameTick && loops < MAX_FRAMESKIP) {
             nextGameTick += SKIP_TICKS;
             loops++;
 
-            std::cout << "Game update" << std::endl;    // Once in a while we can update "true" positions
                 // This update is constant in time and does not depends on computer perf
                 // It does, but what can't run an update every 25 sec ?
             while(m_window->pollEvent(event)) {

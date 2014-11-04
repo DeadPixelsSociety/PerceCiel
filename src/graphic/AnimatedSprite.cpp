@@ -2,23 +2,33 @@
 #include "graphic/TextureLoader.h"
 #include <iostream>
 
-AnimatedSprite::AnimatedSprite(sf::Texture& texture, sf::IntRect firstFrame):
+AnimatedSprite::AnimatedSprite(sf::Texture& texture):
     sf::Sprite(),
-    m_currentFrameIndex(0)
+    m_currentAnimation(NULL)
 {
     setTexture(texture);
-    m_frames.push_back(firstFrame);
-    nextFrame();
 }
 
 AnimatedSprite::~AnimatedSprite(){
 }
 
-void AnimatedSprite::addFrame(const sf::IntRect textureRect){
-    m_frames.push_back(textureRect);
+void AnimatedSprite::addAnimation(int key, Animation& animation){
+    m_animations[key] = &animation;
 }
 
 void AnimatedSprite::nextFrame(){
-    setTextureRect(m_frames[m_currentFrameIndex]);
-    m_currentFrameIndex = (m_currentFrameIndex + 1) % m_frames.size();
+    if(m_currentAnimation != NULL){
+        m_currentAnimation->nextFrame();
+        setTextureRect(m_currentAnimation->getCurrentFrame());
+    }else{
+        std::cerr << "Error : AnimatedSprite::m_currentAnimation is NULL. You must call AnimatedSprite::selectAnimation(int key) before using AnimatedSprite::nextFrame()." << std::endl;
+    }
+}
+
+void AnimatedSprite::selectAnimation(int key){
+    if(m_animations.find(key) == m_animations.end()){
+        std::cerr << "Error : the selected animation \"" << key << "\" does not exist." << std::endl;
+    }else{
+        m_currentAnimation = m_animations[key];
+    }
 }
