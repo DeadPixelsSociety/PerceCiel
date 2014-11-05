@@ -5,49 +5,56 @@
 #include "map/DirtBlock.h"
 #include "graphic/AnimatedSprite.h"
 #include "graphic/TextureLoader.h"
+#include "map/Chunk.h"
+#include "tools/MapVisitor.h"
+#include <tmx/TMX.h>
+#include <tmx/Map.h>
+#include <tmx/Base.h>
 
-class KeyboardEventHandler: public AbstractKeyboardEventHandler{
+#include "graphic/TextureBlockManager.h"
 
-    public:
-        KeyboardEventHandler():
-            AbstractKeyboardEventHandler()
-    {
+using namespace tmx;
+
+class KeyboardEventHandler : public AbstractKeyboardEventHandler {
+public:
+
+    KeyboardEventHandler() :
+    AbstractKeyboardEventHandler() {
     }
 
-        void onKeyPressed(AbstractWindow* window, sf::Event event){
-            std::cout << "Key pressed" << std::endl;
-            if(event.key.code ==sf::Keyboard::Escape){
-                window->close();
-            }
+    void onKeyPressed(AbstractWindow* window, sf::Event event) {
+        std::cout << "Key pressed" << std::endl;
+        if (event.key.code == sf::Keyboard::Escape) {
+            window->close();
         }
+    }
 
-        void onKeyReleased(AbstractWindow* window, sf::Event event){
-            std::cout << "Key released" << std::endl;
-        }
+    void onKeyReleased(AbstractWindow* window, sf::Event event) {
+        std::cout << "Key released" << std::endl;
+    }
 
 };
 
-class MouseEventHandler: public AbstractMouseEventHandler{
+class MouseEventHandler : public AbstractMouseEventHandler {
+public:
 
-    public:
-        MouseEventHandler():
-            AbstractMouseEventHandler()
-    {
-    } 
+    MouseEventHandler() :
+    AbstractMouseEventHandler() {
+    }
 
-        void onButtonPressed(AbstractWindow* window, sf::Event event){
-            std::cout << "Mouse pressed !" << std::endl;
-        }
+    void onButtonPressed(AbstractWindow* window, sf::Event event) {
+        std::cout << "Mouse pressed !" << std::endl;
+    }
 
-        void onButtonReleased(AbstractWindow* window, sf::Event event){
-            std::cout << "Mouse released !" << std::endl;
-        }
+    void onButtonReleased(AbstractWindow* window, sf::Event event) {
+        std::cout << "Mouse released !" << std::endl;
+    }
 
-        void onMoved(AbstractWindow* window, sf::Event event){
-            AnimatedSprite* hero = dynamic_cast<AnimatedSprite*>(window->getDrawableAt(0));
-            hero->nextFrame();
-            std::cout << "Mouse moved !" << std::endl;
-        }
+    void onMoved(AbstractWindow* window, sf::Event event) {
+        AnimatedSprite* hero = dynamic_cast<AnimatedSprite*> (window->getDrawableAt(0));
+        hero->nextFrame();
+        std::cout << "Mouse moved !" << std::endl;
+    }
 
 };
 
@@ -74,7 +81,24 @@ int main() {
     hero.addFrame(sf::IntRect(64, 96, 32, 32));
     w.addDrawable(hero);
 
+    Chunk chunk;
+
+    Map *map = parseMapFile("shared/PerceCiel/maps/test.tmx");
+    MapVisitor visitor(&chunk);
+    map->visitLayers(visitor);
+    for (auto &tileSet : map->getTileSets()) {
+        TextureBlockManager::setTileSet(tileSet);
+    }
+
+
+    chunk.load();
+    delete map;
+
+    w.addDrawable(chunk);
+
     w.show();
+
+
 
     return 0;
 }

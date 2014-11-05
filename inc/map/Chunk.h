@@ -13,6 +13,8 @@
 //#include <SFML/Graphics/RenderTarget.hpp>
 //#include <SFML/Graphics/RenderStates.hpp>
 
+#include <tmx/TileSet.h>
+
 class Chunk : public sf::Drawable {
 public:
     static const int chunkSize;
@@ -29,14 +31,17 @@ public:
 
     short block(int col, int row) const;
     short& block(int col, int row);
+    
+//    inline void setTexture(const sf::Texture *texture) { m_texture = texture; }
 
     void load();
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 
 private:
-    short m_blocks[64 * 64];
+    short m_blocks[128 * 128];
     sf::VertexArray m_vertices;
+//    const sf::Texture *m_texture;
 
 };
 

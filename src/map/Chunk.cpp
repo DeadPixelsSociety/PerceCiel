@@ -9,12 +9,14 @@
 #include "SFML/Graphics/RenderTarget.hpp"
 #include <iostream>
 
-#define TILE_SIZE 4
+#include "graphic/TextureBlockManager.h"
 
-const int Chunk::chunkSize = 64;
+#define TILE_SIZE 32
+
+const int Chunk::chunkSize = 128;
 
 Chunk::Chunk() {
-    for(int i=0 ; i < chunkSize*chunkSize; ++i)
+    for (int i = 0; i < chunkSize * chunkSize; ++i)
         m_blocks[i] = 0;
 }
 
@@ -22,7 +24,7 @@ Chunk::~Chunk() {
 }
 
 short Chunk::block(int col, int row) const {
-    return m_blocks[row * chunkSize + col];
+    return m_blocks[col + row * chunkSize];
 }
 
 short& Chunk::block(int col, int row) {
@@ -48,29 +50,37 @@ void Chunk::load() {
     int pos = 0;
     for (int ligne = 0; ligne < chunkSize; ++ligne) {
         for (int col = 0; col < chunkSize; ++col) {
-            std::cout << m_blocks[pos] << std::endl;
-//            if (m_blocks[pos] == 0)
-//                continue;
+            //            if (m_blocks[pos] == 0)
+            //                continue;
 
             // get a pointer to the current tile's quad
             sf::Vertex* quad = &m_vertices[pos * 4];
 
             // define its 4 corners
-            quad[0].position = sf::Vector2f(ligne * TILE_SIZE, col * TILE_SIZE);
-            quad[1].position = sf::Vector2f((ligne + 1) * TILE_SIZE, col * TILE_SIZE);
-            quad[2].position = sf::Vector2f((ligne + 1) * TILE_SIZE, (col + 1) * TILE_SIZE);
-            quad[3].position = sf::Vector2f(ligne * TILE_SIZE, (col + 1) * TILE_SIZE);
+            quad[0].position = sf::Vector2f(col * TILE_SIZE, ligne * TILE_SIZE);
+            quad[1].position = sf::Vector2f((col + 1) * TILE_SIZE, ligne * TILE_SIZE);
+            quad[2].position = sf::Vector2f((col + 1) * TILE_SIZE, (ligne + 1) * TILE_SIZE);
+            quad[3].position = sf::Vector2f(col * TILE_SIZE, (ligne + 1) * TILE_SIZE);
 
-            quad[0].color = mapColor[m_blocks[pos]]; // + j * width];
-            quad[1].color = mapColor[m_blocks[pos]]; // + j * width + 1];
-            quad[2].color = mapColor[m_blocks[pos]]; // + (j + 1) * width + 1];
-            quad[3].color = mapColor[m_blocks[pos]]; // + (j + 1) * width];
+//            quad[0].color = mapColor[m_blocks[pos]]; // + j * width];
+//            quad[1].color = mapColor[m_blocks[pos]]; // + j * width + 1];
+//            quad[2].color = mapColor[m_blocks[pos]]; // + (j + 1) * width + 1];
+//            quad[3].color = mapColor[m_blocks[pos]]; // + (j + 1) * width];
 
+            TextureBlockManager::putTextCoords(m_blocks[pos], quad);
+//            quad[0].texCoords = sf::Vector2f(0,0);
+//            quad[1].texCoords = sf::Vector2f(TILE_SIZE,0);
+//            quad[2].texCoords = sf::Vector2f(TILE_SIZE,TILE_SIZE);
+//            quad[3].texCoords = sf::Vector2f(0,TILE_SIZE);
             ++pos;
         }
+        std::cout << std::endl;
     }
 }
 
+
+
 void Chunk::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    states.texture = TextureBlockManager::s_texture;
     target.draw(m_vertices, states);
 }

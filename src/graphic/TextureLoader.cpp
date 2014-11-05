@@ -17,7 +17,7 @@ TextureLoader::~TextureLoader(){
     delete TextureLoader::m_singleton;
 }
 
-sf::Texture& TextureLoader::loadFromFile(const char* fileName){
+sf::Texture& TextureLoader::loadFromFile(const std::string &fileName){
     if(m_loadedTextures.find(fileName) == m_loadedTextures.end()){
         m_loadedTextures[fileName] = sf::Texture();
         if(!m_loadedTextures[fileName].loadFromFile(fileName)){

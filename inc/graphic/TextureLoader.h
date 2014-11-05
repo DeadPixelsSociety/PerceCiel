@@ -9,11 +9,11 @@ class TextureLoader{
     public:
         static TextureLoader* getSingleton();
         ~TextureLoader();
-        sf::Texture& loadFromFile(const char* fileName);
+        sf::Texture& loadFromFile(const std::string & fileName);
 
     private:
         TextureLoader();
-        std::map<const char*, sf::Texture> m_loadedTextures;
+        std::map<const std::string, sf::Texture> m_loadedTextures;
         static TextureLoader* m_singleton;
 
 };
