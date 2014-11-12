@@ -11,9 +11,11 @@ set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 
 include(GNUInstallDirs)
 
+find_package(Boost REQUIRED COMPONENTS filesystem system)
+
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(SFML2 REQUIRED sfml-graphics>=2.1 sfml-audio>=2.1 sfml-network>=2.1)
-#pkg_check_modules(LIBTMX REQUIRED libtmx0)
+pkg_check_modules(LIBTMX REQUIRED libtmx0)
 #set(Clibtmx0_DIR ~/Documents/lib/libtmx/build/lib)
 #set(CMAKE_MODULE_PATH ~/Documents/lib/libtmx/src)
 
@@ -42,7 +44,10 @@ include_directories(inc)
 add_executable(laucher ${source_files}) 
 
 #Link executable with the library SFML
-target_link_libraries(laucher ${SFML2_LIBRARIES})
+target_link_libraries(laucher
+	${SFML2_LIBRARIES}
+	${Boost_LIBRARIES}
+	${LIBTMX_LIBRARIES})
 
 #include(CPackConfig.cmake)
 

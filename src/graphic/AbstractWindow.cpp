@@ -149,6 +149,6 @@ void AbstractWindow::redraw(){
 }
 
 void AbstractWindow::show(){
-    m_window->create(sf::VideoMode(m_dimensions.x, m_dimensions.y), m_title, m_isFullScreen ? sf::Style::Fullscreen : sf::Style::Resize);
+    m_window->create(sf::VideoMode(m_dimensions.x, m_dimensions.y), m_title, m_isFullScreen ? sf::Style::Fullscreen : sf::Style::Default);
     handleEvents();
 }
