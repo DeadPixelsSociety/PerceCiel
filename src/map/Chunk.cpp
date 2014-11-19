@@ -13,9 +13,12 @@
 
 #define TILE_SIZE 32
 
-const int Chunk::chunkSize = 128;
+//const int Chunk::chunkSize;
+//const sf::Vector2i Chunk::vectorSize(128,128);
 
-Chunk::Chunk() {
+Chunk::Chunk(const sf::Vector2i &position)
+: m_position(position)
+{
     for (int i = 0; i < chunkSize * chunkSize; ++i)
         m_blocks[i] = 0;
 }
@@ -45,6 +48,8 @@ void Chunk::load() {
     mapColor[1] = sf::Color::Green;
     mapColor[2] = sf::Color::Magenta;
     mapColor[2] = sf::Color::White;
+    
+    sf::Vector2f offset(m_position.x * Chunk::chunkSize * TILE_SIZE, m_position.y * Chunk::chunkSize * TILE_SIZE);
 
 
     int pos = 0;
@@ -57,10 +62,10 @@ void Chunk::load() {
             sf::Vertex* quad = &m_vertices[pos * 4];
 
             // define its 4 corners
-            quad[0].position = sf::Vector2f(col * TILE_SIZE, ligne * TILE_SIZE);
-            quad[1].position = sf::Vector2f((col + 1) * TILE_SIZE, ligne * TILE_SIZE);
-            quad[2].position = sf::Vector2f((col + 1) * TILE_SIZE, (ligne + 1) * TILE_SIZE);
-            quad[3].position = sf::Vector2f(col * TILE_SIZE, (ligne + 1) * TILE_SIZE);
+            quad[0].position = offset + sf::Vector2f(col * TILE_SIZE, ligne * TILE_SIZE);
+            quad[1].position = offset + sf::Vector2f((col + 1) * TILE_SIZE, ligne * TILE_SIZE);
+            quad[2].position = offset + sf::Vector2f((col + 1) * TILE_SIZE, (ligne + 1) * TILE_SIZE);
+            quad[3].position = offset + sf::Vector2f(col * TILE_SIZE, (ligne + 1) * TILE_SIZE);
 
 //            quad[0].color = mapColor[m_blocks[pos]]; // + j * width];
 //            quad[1].color = mapColor[m_blocks[pos]]; // + j * width + 1];

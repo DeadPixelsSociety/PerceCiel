@@ -12,6 +12,7 @@
 #include <tmx/Base.h>
 
 #include "graphic/TextureBlockManager.h"
+#include "map/ChunkLoader.h"
 
 using namespace tmx;
 
@@ -99,22 +100,33 @@ int main() {
     hero.addAnimation(sf::Keyboard::Q, animationLeft);
     hero.addAnimation(sf::Keyboard::D, animationRight);
     hero.addAnimation(sf::Keyboard::Z, animationUp);
-    w.addDrawable(hero);
-
     Chunk chunk;
 
     Map *map = parseMapFile("shared/PerceCiel/maps/test.tmx");
-    MapVisitor visitor(&chunk);
-    map->visitLayers(visitor);
+//    MapVisitor visitor(&chunk);
+//    map->visitLayers(visitor);
     for (auto &tileSet : map->getTileSets()) {
         TextureBlockManager::setTileSet(tileSet);
     }
 
 
-    chunk.load();
+    ChunkLoader chunkLoader;
+    Chunk c = chunkLoader.getChunk(sf::Vector2i(0,0));
+    c.block(0,0) = 1;
+    c.block(0,1) = 1;
+    c.load();
+    Chunk c2 = chunkLoader.getChunk(sf::Vector2i(0,1));
+    c2.block(0,0) = 1;
+    c2.load();
+//    c2.t
+    
+//    chunk.load();
     delete map;
 
-    w.addDrawable(chunk);
+    w.addDrawable(c);
+    w.addDrawable(c2);
+    w.addDrawable(hero);
+
 
     w.show();
 

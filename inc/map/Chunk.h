@@ -17,8 +17,9 @@
 
 class Chunk : public sf::Drawable {
 public:
-    static const int chunkSize;
-    Chunk();
+    enum {chunkSize = 16};
+//    static const sf::Vector2i vectorSize;
+    Chunk(const sf::Vector2i &position = sf::Vector2i(0,0));
     virtual ~Chunk();
 
     inline short* blocks() {
@@ -39,7 +40,8 @@ public:
 
 
 private:
-    short m_blocks[128 * 128];
+    sf::Vector2i m_position;
+    short m_blocks[chunkSize * chunkSize];
     sf::VertexArray m_vertices;
 //    const sf::Texture *m_texture;
 
