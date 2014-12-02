@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="2500" height="400" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="All" tilewidth="32" tileheight="32">
+  <image source="../CloudStation/All.bmp" trans="ff00ff" width="320" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Terre"/>
+    <property name="Resistance" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="Monde" value="Cimetiere"/>
+    <property name="Nom" value="Terre Dechue"/>
+    <property name="Resistance" value="1"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="Monde" value="Cimetiere"/>
+    <property name="Nom" value="Terre Squelette"/>
+    <property name="Resistance" value="1"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="Monde" value="Marais"/>
+    <property name="Nom" value="Boue"/>
+    <property name="Resistance" value="1"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="Monde" value="Arachnide"/>
+    <property name="Nom" value="Toile"/>
+    <property name="Resistance" value="1"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="Monde" value="Foret"/>
+    <property name="Nom" value="Bois"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="Monde" value="Arachnide"/>
+    <property name="Nom" value="Soie"/>
+    <property name="Resistance" value="1"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="Monde" value="Glace"/>
+    <property name="Nom" value="Neige"/>
+    <property name="Resistance" value="1"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="Monde" value="Desert"/>
+    <property name="Nom" value="Sable Dur"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="Monde" value="Desert"/>
+    <property name="Nom" value="Sable"/>
+    <property name="Resistance" value="1"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="Monde" value="Desert"/>
+    <property name="Nom" value="Sable Mouvant"/>
+    <property name="Resistance" value="1"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="Monde" value="Glace"/>
+    <property name="Nom" value="Glace Fissuree"/>
+    <property name="Resistance" value="1"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="Monde" value="Glace"/>
+    <property name="Nom" value="Glace"/>
+    <property name="Resistance" value="1"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="Monde" value="Glace"/>
+    <property name="Nom" value="Glace Dure"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Pierre"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Roche"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="Monde" value="Foret"/>
+    <property name="Nom" value="Roche Moussue"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="Monde" value="Foret"/>
+    <property name="Nom" value="Roche Envahie"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="Monde" value="Volcanique"/>
+    <property name="Nom" value="Roche Rougeoyante"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="Monde" value="Volcanique"/>
+    <property name="Nom" value="Roche Fondue"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="Monde" value="Volcanique"/>
+    <property name="Nom" value="Lave"/>
+    <property name="Resistance" value="X"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="Monde" value="Desert"/>
+    <property name="Nom" value="Brique Scultee"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="Monde" value="Desert"/>
+    <property name="Nom" value="Brique"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="Monde" value="Glace"/>
+    <property name="Nom" value="Brique Glacee"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="Monde" value="Foret"/>
+    <property name="Nom" value="Brique Pierre"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="Monde" value="Foret"/>
+    <property name="Nom" value="Brique Envahie"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="26">
+   <properties>
+    <property name="Monde" value="Volcanique"/>
+    <property name="Nom" value="Brique Rougeoyante"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Filon Cuivre"/>
+    <property name="Resistance" value="20"/>
+   </properties>
+  </tile>
+  <tile id="28">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Filon Fer"/>
+    <property name="Resistance" value="20"/>
+   </properties>
+  </tile>
+  <tile id="29">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Filon Argent"/>
+    <property name="Resistance" value="20"/>
+   </properties>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Filon Or"/>
+    <property name="Resistance" value="20"/>
+   </properties>
+  </tile>
+  <tile id="31">
+   <properties>
+    <property name="Monde" value="Mecanique"/>
+    <property name="Nom" value="Cuivre"/>
+    <property name="Resistance" value="40"/>
+   </properties>
+  </tile>
+  <tile id="32">
+   <properties>
+    <property name="Monde" value="Mecanique"/>
+    <property name="Nom" value="Fer"/>
+    <property name="Resistance" value="40"/>
+   </properties>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="Monde" value="Mecanique"/>
+    <property name="Nom" value="Argent"/>
+    <property name="Resistance" value="40"/>
+   </properties>
+  </tile>
+  <tile id="34">
+   <properties>
+    <property name="Monde" value="Mecanique"/>
+    <property name="Nom" value="Or"/>
+    <property name="Resistance" value="40"/>
+   </properties>
+  </tile>
+  <tile id="35">
+   <properties>
+    <property name="Monde" value="Mecanique"/>
+    <property name="Nom" value="Tole"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="36">
+   <properties>
+    <property name="Monde" value="Mecanique"/>
+    <property name="Nom" value="Poutrelle"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="37">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Minerai Amethyste"/>
+    <property name="Resistance" value="40"/>
+   </properties>
+  </tile>
+  <tile id="38">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Minerai Diamant"/>
+    <property name="Resistance" value="40"/>
+   </properties>
+  </tile>
+  <tile id="39">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Minerai Emeraude"/>
+    <property name="Resistance" value="40"/>
+   </properties>
+  </tile>
+  <tile id="40">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Minerai Rubis"/>
+    <property name="Resistance" value="40"/>
+   </properties>
+  </tile>
+  <tile id="41">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Minerai Topaze"/>
+    <property name="Resistance" value="40"/>
+   </properties>
+  </tile>
+  <tile id="42">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Minerai Saphir"/>
+    <property name="Resistance" value="40"/>
+   </properties>
+  </tile>
+  <tile id="43">
+   <properties>
+    <property name="Monde" value="Draconique"/>
+    <property name="Nom" value="Roche Runique"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="44">
+   <properties>
+    <property name="Monde" value="Draconique"/>
+    <property name="Nom" value="Ecailles"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="45">
+   <properties>
+    <property name="Monde" value="Draconique"/>
+    <property name="Nom" value="Ecailles Eternelles"/>
+    <property name="Resistance" value="20"/>
+   </properties>
+  </tile>
+  <tile id="46">
+   <properties>
+    <property name="Monde" value="Volcanique"/>
+    <property name="Nom" value="Obsidienne"/>
+    <property name="Resistance" value="20"/>
+   </properties>
+  </tile>
+  <tile id="47">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Eau"/>
+    <property name="Resistance" value="X"/>
+   </properties>
+  </tile>
+  <tile id="48">
+   <properties>
+    <property name="Monde" value="Aerien"/>
+    <property name="Nom" value="Nuage Leger"/>
+    <property name="Resistance" value="1"/>
+   </properties>
+  </tile>
+  <tile id="49">
+   <properties>
+    <property name="Monde" value="Aerien"/>
+    <property name="Nom" value="Nuage Lourd"/>
+    <property name="Resistance" value="1"/>
+   </properties>
+  </tile>
+  <tile id="50">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Vitre"/>
+    <property name="Resistance" value="2"/>
+   </properties>
+  </tile>
+  <tile id="51">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Creme"/>
+    <property name="Resistance" value="1"/>
+   </properties>
+  </tile>
+  <tile id="52">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Gateau"/>
+    <property name="Resistance" value="1"/>
+   </properties>
+  </tile>
+  <tile id="53">
+   <properties>
+    <property name="Monde" value="Foret"/>
+    <property name="Nom" value="Ambre"/>
+    <property name="Resistance" value="40"/>
+   </properties>
+  </tile>
+  <tile id="54">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Diamant"/>
+    <property name="Resistance" value="40"/>
+   </properties>
+  </tile>
+  <tile id="55">
+   <properties>
+    <property name="Monde" value="Elementaire"/>
+    <property name="Nom" value="Bloc Universel"/>
+    <property name="Resistance" value="20"/>
+   </properties>
+  </tile>
+  <tile id="56">
+   <properties>
+    <property name="Monde" value="Cimetiere"/>
+    <property name="Nom" value="Crane"/>
+    <property name="Resistance" value="20"/>
+   </properties>
+  </tile>
+  <tile id="57">
+   <properties>
+    <property name="Monde" value="Aerien"/>
+    <property name="Nom" value="Essence Vent"/>
+    <property name="Resistance" value="40"/>
+   </properties>
+  </tile>
+  <tile id="58">
+   <properties>
+    <property name="Monde" value="Glace"/>
+    <property name="Nom" value="Essence Glace"/>
+    <property name="Resistance" value="40"/>
+   </properties>
+  </tile>
+  <tile id="59">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Granit"/>
+    <property name="Resistance" value="X"/>
+   </properties>
+  </tile>
+  <tile id="60">
+   <properties>
+    <property name="Monde" value="Glace"/>
+    <property name="Nom" value="Stalagmite"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+  <tile id="61">
+   <properties>
+    <property name="Monde" value="Glace"/>
+    <property name="Nom" value="Stalactite"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+  <tile id="62">
+   <properties>
+    <property name="Monde" value="Draconique"/>
+    <property name="Nom" value="Griffe"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+  <tile id="63">
+   <properties>
+    <property name="Monde" value="Draconique"/>
+    <property name="Nom" value="Croc"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+  <tile id="64">
+   <properties>
+    <property name="Monde" value="Draconique"/>
+    <property name="Nom" value="Oeuf Dragon"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+  <tile id="65">
+   <properties>
+    <property name="Monde" value="Arachnide"/>
+    <property name="Nom" value="Oeuf fossilise"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+  <tile id="66">
+   <properties>
+    <property name="Monde" value="Arachnide"/>
+    <property name="Nom" value="Oeuf Araignee"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+  <tile id="67">
+   <properties>
+    <property name="Monde" value="Mecanique"/>
+    <property name="Nom" value="Engrenages"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+  <tile id="68">
+   <properties>
+    <property name="Monde" value="Draconique"/>
+    <property name="Nom" value="Tresor"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+  <tile id="69">
+   <properties>
+    <property name="Monde" value="Draconique"/>
+    <property name="Nom" value="Pieces"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+  <tile id="70">
+   <properties>
+    <property name="Monde" value="Cimetiere"/>
+    <property name="Nom" value="Os"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+  <tile id="71">
+   <properties>
+    <property name="Monde" value="Cimetiere"/>
+    <property name="Nom" value="Tombe"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+  <tile id="72">
+   <properties>
+    <property name="Monde" value="Desert"/>
+    <property name="Nom" value="Cactus"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+  <tile id="73">
+   <properties>
+    <property name="Monde" value="*"/>
+    <property name="Nom" value="Bambou"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+  <tile id="74">
+   <properties>
+    <property name="Monde" value="Foret"/>
+    <property name="Nom" value="Lianes"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+  <tile id="75">
+   <properties>
+    <property name="Monde" value="Foret"/>
+    <property name="Nom" value="Ronces"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+  <tile id="76">
+   <properties>
+    <property name="Monde" value="Foret"/>
+    <property name="Nom" value="Buisson"/>
+    <property name="Resistance" value="0"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Calque de Tile 1" width="2500" height="400">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPBuDJMAAQ==
+  </data>
+ </layer>
+</map>
