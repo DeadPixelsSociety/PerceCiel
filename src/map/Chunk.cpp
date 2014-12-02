@@ -8,17 +8,19 @@
 #include "map/Chunk.h"
 #include "SFML/Graphics/RenderTarget.hpp"
 #include <iostream>
+#include <fstream>
 
 #include "graphic/TextureBlockManager.h"
 
 #define TILE_SIZE 32
 
+const std::string Chunk::saveDir = "./chunks/";
+
 //const int Chunk::chunkSize;
 //const sf::Vector2i Chunk::vectorSize(128,128);
 
 Chunk::Chunk(const sf::Vector2i &position)
-: m_position(position)
-{
+: m_position(position) {
     for (int i = 0; i < chunkSize * chunkSize; ++i)
         m_blocks[i] = 0;
 }
@@ -34,7 +36,51 @@ short& Chunk::block(int col, int row) {
     return m_blocks[row * chunkSize + col];
 }
 
-void Chunk::load() {
+std::string Chunk::getDefaultSavePath() {
+    return saveDir + std::to_string(m_position.x) + "_" + std::to_string(m_position.y);
+}
+
+void Chunk::loadFromFile() {
+    return loadFromFile(getDefaultSavePath());
+}
+
+void Chunk::loadFromFile(const std::string& path) {
+    std::ifstream fichier(path, std::ios::in);
+    int indice = 0;
+    if (fichier) {
+        char c;
+        while (fichier.get(c)) {
+            m_blocks[indice++] = static_cast<short>(c);
+        std::cout << c;
+        }
+        std::cout << "lecture effectué" << std::endl;
+        fichier.close();
+
+    } else {
+        std::cout << "ouverture impossible pour lecture" << std::endl;
+    }
+}
+
+void Chunk::saveInFile() {
+    saveInFile(getDefaultSavePath());
+}
+
+void Chunk::saveInFile(const std::string& path) {
+    std::ofstream fichier(path, std::ios::trunc);
+    int size = chunkSize * chunkSize;
+
+    if (fichier) {
+        for (int i = 0; i < size; ++i) {
+            fichier << m_blocks[i];
+        }
+        fichier.close();
+
+    } else {
+        std::cout << "ouverture impossible pour ecriture" << std::endl;
+    }
+}
+
+void Chunk::loadGraphic() {
     int width = chunkSize;
     int height = chunkSize;
     //    m_vertices.
@@ -47,8 +93,8 @@ void Chunk::load() {
     mapColor[0] = sf::Color::Red;
     mapColor[1] = sf::Color::Green;
     mapColor[2] = sf::Color::Magenta;
-    mapColor[2] = sf::Color::White;
-    
+    mapColor[3] = sf::Color::White;
+
     sf::Vector2f offset(m_position.x * Chunk::chunkSize * TILE_SIZE, m_position.y * Chunk::chunkSize * TILE_SIZE);
 
 
@@ -67,23 +113,21 @@ void Chunk::load() {
             quad[2].position = offset + sf::Vector2f((col + 1) * TILE_SIZE, (ligne + 1) * TILE_SIZE);
             quad[3].position = offset + sf::Vector2f(col * TILE_SIZE, (ligne + 1) * TILE_SIZE);
 
-//            quad[0].color = mapColor[m_blocks[pos]]; // + j * width];
-//            quad[1].color = mapColor[m_blocks[pos]]; // + j * width + 1];
-//            quad[2].color = mapColor[m_blocks[pos]]; // + (j + 1) * width + 1];
-//            quad[3].color = mapColor[m_blocks[pos]]; // + (j + 1) * width];
+                        quad[0].color = mapColor[m_blocks[pos]]; // + j * width];
+                        quad[1].color = mapColor[m_blocks[pos]]; // + j * width + 1];
+                        quad[2].color = mapColor[m_blocks[pos]]; // + (j + 1) * width + 1];
+                        quad[3].color = mapColor[m_blocks[pos]]; // + (j + 1) * width];
 
-            TextureBlockManager::putTextCoords(m_blocks[pos], quad);
-//            quad[0].texCoords = sf::Vector2f(0,0);
-//            quad[1].texCoords = sf::Vector2f(TILE_SIZE,0);
-//            quad[2].texCoords = sf::Vector2f(TILE_SIZE,TILE_SIZE);
-//            quad[3].texCoords = sf::Vector2f(0,TILE_SIZE);
+//            TextureBlockManager::putTextCoords(m_blocks[pos], quad);
+            //            quad[0].texCoords = sf::Vector2f(0,0);
+            //            quad[1].texCoords = sf::Vector2f(TILE_SIZE,0);
+            //            quad[2].texCoords = sf::Vector2f(TILE_SIZE,TILE_SIZE);
+            //            quad[3].texCoords = sf::Vector2f(0,TILE_SIZE);
             ++pos;
         }
         std::cout << std::endl;
     }
 }
-
-
 
 void Chunk::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     states.texture = TextureBlockManager::s_texture;

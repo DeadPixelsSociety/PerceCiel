@@ -14,8 +14,6 @@
 #include "graphic/TextureBlockManager.h"
 #include "map/ChunkLoader.h"
 
-using namespace tmx;
-
 class KeyboardEventHandler : public AbstractKeyboardEventHandler {
 public:
 
@@ -102,7 +100,7 @@ int main() {
     hero.addAnimation(sf::Keyboard::Z, animationUp);
     Chunk chunk;
 
-    Map *map = parseMapFile("shared/PerceCiel/maps/test.tmx");
+    tmx::Map *map = tmx::parseMapFile("shared/PerceCiel/maps/test.tmx");
 //    MapVisitor visitor(&chunk);
 //    map->visitLayers(visitor);
     for (auto &tileSet : map->getTileSets()) {
@@ -110,26 +108,28 @@ int main() {
     }
 
 
-    ChunkLoader chunkLoader;
-    Chunk c = chunkLoader.getChunk(sf::Vector2i(0,0));
-    c.block(0,0) = 1;
-    c.block(0,1) = 1;
-    c.load();
-    Chunk c2 = chunkLoader.getChunk(sf::Vector2i(0,1));
-    c2.block(0,0) = 1;
-    c2.load();
+    ChunkWorld world;
+    ChunkLoader chunkLoader(world);
+    
+//    Chunk c = chunkLoader.getChunk(sf::Vector2i(0,0));
+//    c.block(0,0) = 1;
+//    c.block(0,1) = 1;
+//    c.loadGraphic();
+//    Chunk c2 = chunkLoader.getChunk(sf::Vector2i(0,1));
+//    c2.block(0,0) = 1;
+//    c2.loadGraphic();
 //    c2.t
     
 //    chunk.load();
-    delete map;
 
-    w.addDrawable(c);
-    w.addDrawable(c2);
+    w.addDrawable(world);
+//    w.addDrawable(c2);
     w.addDrawable(hero);
 
 
     w.show();
 
+    delete map;
 
 
     return 0;

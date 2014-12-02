@@ -13,11 +13,14 @@
 //#include <SFML/Graphics/RenderTarget.hpp>
 //#include <SFML/Graphics/RenderStates.hpp>
 
+#include <string>
 #include <tmx/TileSet.h>
 
 class Chunk : public sf::Drawable {
 public:
-    enum {chunkSize = 16};
+    enum {chunkSize = 4};
+    
+    static const std::string saveDir;
 //    static const sf::Vector2i vectorSize;
     Chunk(const sf::Vector2i &position = sf::Vector2i(0,0));
     virtual ~Chunk();
@@ -34,8 +37,13 @@ public:
     short& block(int col, int row);
     
 //    inline void setTexture(const sf::Texture *texture) { m_texture = texture; }
-
-    void load();
+    std::string getDefaultSavePath();
+    
+    void loadGraphic();
+    void loadFromFile();
+    void loadFromFile(const std::string &path);
+    void saveInFile();
+    void saveInFile(const std::string &path);
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 

@@ -76,6 +76,9 @@ void AbstractWindow::handleEvents(){
     int loops;
     sf::Int32 nextGameTick = clock.getElapsedTime().asMilliseconds();
 
+    sf::View view(m_window->getView());
+    view.zoom(6.0f);
+    m_window->setView(view);
     /*clear();
     redraw();*/
     while(m_window->isOpen()) {

@@ -13,12 +13,13 @@
 #include <boost/functional/hash.hpp>
 #include <iostream>
 #include "Chunk.h"
+#include "ChunkWorld.h"
 
 class ChunkLoader {
 public:
-    ChunkLoader(const sf::Vector2i &center = sf::Vector2i(0,0), int space = 4, int size = 8);
+    ChunkLoader(ChunkWorld &chunkWorld, const sf::Vector2i &center = sf::Vector2i(0,0), int space = 4, int size = 8);
     virtual ~ChunkLoader();
-    Chunk& getChunk(const sf::Vector2i &position);
+//    Chunk& getChunk(const sf::Vector2i &position);
     void setCenter(sf::Vector2i center);
     
     
@@ -44,8 +45,7 @@ private:
     sf::Vector2i m_topLeftCorner;
     sf::Vector2i m_bottomRightCorner;
     
-    std::unordered_map<int, std::unordered_map<int, Chunk> > m_container;
-
+    ChunkWorld &m_chunkWorld;
 };
 
 #endif	/* CHUNKLOADER_H */
