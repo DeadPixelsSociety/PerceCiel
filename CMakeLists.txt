@@ -28,7 +28,7 @@ pkg_check_modules(LIBTMX REQUIRED libtmx0)
 #endwindows
 
 #compilation variables
-add_definitions(-Wall -g -O2)
+add_definitions(-Wall -g -O3)
 add_definitions(-std=c++11)
 
 link_directories(${SFML2_sfml-graphics_LIBDIR})

@@ -71,37 +71,43 @@ int main() {
     // NORMAL WINDOW WITH WIDTH 800 AND HEIGHT 600
     AbstractWindow w("Hello Window !", sf::Vector2i(800, 600), new KeyboardEventHandler(), new MouseEventHandler(), false);
 
-    sf::Texture heroTexture = TextureLoader::getSingleton()->loadFromFile("res/mayaRight.png");
+    sf::Texture heroTexture = TextureLoader::getSingleton()->loadFromFile("res/hero.png");
 //    AnimatedSprite hero(heroTexture, sf::IntRect(0, 64, 32, 32));
-    AnimatedSprite hero(heroTexture, sf::IntRect(0, 0, 128, 256));
+    int widthStep = 128;
+    AnimatedSprite hero(heroTexture, sf::IntRect(0, 100, widthStep, 256));
 
     Animation animationDown(sf::IntRect(0, 0, 32, 32));
     animationDown.addFrame(sf::IntRect(32, 0, 32, 32));
     animationDown.addFrame(sf::IntRect(64, 0, 32, 32));
     animationDown.addFrame(sf::IntRect(32, 0, 32, 32));
 
-    Animation animationLeft(sf::IntRect(0, 32, 32, 32));
-    animationLeft.addFrame(sf::IntRect(32, 32, 32, 32));
-    animationLeft.addFrame(sf::IntRect(64, 32, 32, 32));
-    animationLeft.addFrame(sf::IntRect(32, 32, 32, 32));
+//    Animation animationLeft(sf::IntRect(0, 32, 32, 32));
+//    animationLeft.addFrame(sf::IntRect(32, 32, 32, 32));
+//    animationLeft.addFrame(sf::IntRect(64, 32, 32, 32));
+//    animationLeft.addFrame(sf::IntRect(32, 32, 32, 32));
 
 //    Animation animationRight(sf::IntRect(0, 64, 32, 32));
 //    animationRight.addFrame(sf::IntRect(32, 64, 32, 32));
 //    animationRight.addFrame(sf::IntRect(64, 64, 32, 32));
 //    animationRight.addFrame(sf::IntRect(32, 64, 32, 32));
-    Animation animationRight(sf::IntRect(0, 0, 256, 160));
+    int heightStep = 256;
+    int heightAnimRight = heightStep * 0;
+    int heightAnimLeft = heightStep * 1;
+    Animation animationRight(sf::IntRect(0, heightAnimRight, widthStep, heightStep));
+    Animation animationLeft(sf::IntRect(0, heightAnimLeft, widthStep, heightStep));
     int nbFrames = 12;
-    int size = nbFrames * 128;
-    for(int i = 0; i < size; i+=128)
-        animationRight.addFrame(sf::IntRect(i, 0, 128, 256));
-
-    Animation animationUp(sf::IntRect(0, 96, 32, 32));
-    animationUp.addFrame(sf::IntRect(32, 96, 32, 32));
-    animationUp.addFrame(sf::IntRect(64, 96, 32, 32));
-    animationUp.addFrame(sf::IntRect(32, 96, 32, 32));
+    int size = nbFrames * widthStep;
+    for(int i = widthStep; i < size; i+=widthStep) {
+        animationRight.addFrame(sf::IntRect(i, heightAnimRight, widthStep, heightStep));
+        animationLeft.addFrame(sf::IntRect(i, heightAnimLeft, widthStep, heightStep));
+    }
+//    Animation animationUp(sf::IntRect(0, 96, 32, 32));
+//    animationUp.addFrame(sf::IntRect(32, 96, 32, 32));
+//    animationUp.addFrame(sf::IntRect(64, 96, 32, 32));
+//    animationUp.addFrame(sf::IntRect(32, 96, 32, 32));
 
 //    hero.addAnimation(sf::Keyboard::S, animationDown);
-//    hero.addAnimation(sf::Keyboard::Q, animationLeft);
+    hero.addAnimation(sf::Keyboard::Q, animationLeft);
     hero.addAnimation(sf::Keyboard::D, animationRight);
 //    hero.addAnimation(sf::Keyboard::Z, animationUp);
     Chunk chunk;
