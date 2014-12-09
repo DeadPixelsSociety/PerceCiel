@@ -15,6 +15,7 @@ AnimatedSprite::~AnimatedSprite(){
 }
 
 void AnimatedSprite::addAnimation(int key, Animation& animation){
+        std::cout << "Annimation " << key << " Added" << std::endl;
     m_animations[key] = &animation;
 }
 
@@ -33,4 +34,8 @@ void AnimatedSprite::selectAnimation(int key){
     }else{
         m_currentAnimation = m_animations[key];
     }
+}
+
+void AnimatedSprite::update(float dt) {
+
 }

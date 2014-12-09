@@ -14,10 +14,11 @@
 #include <tmx/TileLayer.h>
 
 #include "map/Chunk.h"
+#include "map/ChunkWorld.h"
 
 class MapVisitor : public tmx::LayerVisitor{
 public:
-    MapVisitor(Chunk *chunk);
+    MapVisitor(ChunkWorld *chunkWorld);
     virtual ~MapVisitor();
     
 
@@ -30,7 +31,7 @@ public:
 
 
 private:
-    Chunk *m_chunk;
+    ChunkWorld *m_map;
 
 };
 

@@ -18,7 +18,7 @@
 
 class Chunk : public sf::Drawable {
 public:
-    enum {chunkSize = 4};
+    enum {chunkSize = 32};
     
     static const std::string saveDir;
 //    static const sf::Vector2i vectorSize;
@@ -32,14 +32,15 @@ public:
     inline const short* blocks() const {
         return m_blocks;
     }
+    
+    inline int getNumBlock(int col, int row) const { return col + row * chunkSize; }
 
-    short block(int col, int row) const;
-    short& block(int col, int row);
+    short getBlock(int col, int row) const;
+    void setBlock(int col, int row, int id);
     
 //    inline void setTexture(const sf::Texture *texture) { m_texture = texture; }
     std::string getDefaultSavePath();
     
-    void loadGraphic();
     void loadFromFile();
     void loadFromFile(const std::string &path);
     void saveInFile();
@@ -47,6 +48,9 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 
+private:
+    void updateRender(int numBlock);
+    void loadGraphic();
 private:
     sf::Vector2i m_position;
     short m_blocks[chunkSize * chunkSize];

@@ -7,6 +7,8 @@
 
 #include "map/ChunkWorld.h"
 
+#include <iostream>
+
 ChunkWorld::ChunkWorld() {
 }
 
@@ -19,7 +21,6 @@ Chunk* ChunkWorld::load(const sf::Vector2i& chunkPos) {
     if(iterator == m_chunkList[chunkPos.x].end()) {
         Chunk *chunk = new Chunk(chunkPos);
         chunk->loadFromFile();
-        chunk->loadGraphic();
         ChunkCount chunkCount;
         chunkCount.count = 1;
         chunkCount.chunk = chunk;
@@ -33,7 +34,7 @@ Chunk* ChunkWorld::load(const sf::Vector2i& chunkPos) {
 }
 
 void ChunkWorld::release(int i, int j) {
-    ChunkCount chunkCount =  m_chunkList[i][j];
+    ChunkCount &chunkCount =  m_chunkList[i][j];
     chunkCount.count--;
     if(chunkCount.count == 0) {
         chunkCount.chunk->saveInFile();

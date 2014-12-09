@@ -1,6 +1,7 @@
 #include <iostream>
 #include "graphic/AbstractWindow.h"
 #include "graphic/AnimatedSprite.h"
+#include "map/ChunkWorld.h"
 
 AbstractWindow::AbstractWindow(const char* title, sf::Vector2i dimensions, AbstractKeyboardEventHandler* keyboardEventHandler, AbstractMouseEventHandler* mouseEventHandler, bool isFullScreen):
     m_keyboardEventHandler(keyboardEventHandler),
@@ -23,6 +24,10 @@ sf::Drawable* AbstractWindow::getDrawableAt(int index) {
 
 void AbstractWindow::addDrawable(sf::Drawable& drawable){
     m_drawables.push_back(&drawable);
+}
+
+void AbstractWindow::addUpdatable(Updatable& updatable){
+    m_updatables.push_back(&updatable);
 }
 
 void AbstractWindow::clear(){
@@ -76,9 +81,11 @@ void AbstractWindow::handleEvents(){
     int loops;
     sf::Int32 nextGameTick = clock.getElapsedTime().asMilliseconds();
 
-    sf::View view(m_window->getView());
-    view.zoom(6.0f);
-    m_window->setView(view);
+        sf::View view(m_window->getView());
+        view.setCenter(*m_cameraPosition);
+        view.zoom(1.0f);
+        m_window->setView(view);
+//    view.zoom(2.0f);
     /*clear();
     redraw();*/
     while(m_window->isOpen()) {
@@ -94,6 +101,7 @@ void AbstractWindow::handleEvents(){
                 // We should m_window->update
                 switch(event.type){
                     case sf::Event::Closed:
+                        // @TODO save game and chunks
                         close();
                         break;
                     case sf::Event::KeyPressed:
@@ -121,6 +129,13 @@ void AbstractWindow::handleEvents(){
         //m_window->redraw(interpolation)
         //  { m_drawables[0].setX(m_drawables[0].getX + interpolation); ...}
         clear();
+        update(clock.getElapsedTime().asSeconds());
+        
+        sf::View view(m_window->getView());
+        view.setCenter(*m_cameraPosition);
+//        view.sezoom(3.0f);
+        m_window->setView(view);
+        
         redraw();
         display();
 
@@ -155,3 +170,31 @@ void AbstractWindow::show(){
     m_window->create(sf::VideoMode(m_dimensions.x, m_dimensions.y), m_title, m_isFullScreen ? sf::Style::Fullscreen : sf::Style::Default);
     handleEvents();
 }
+
+void AbstractWindow::setCameraPosition(const sf::Vector2f &position) {
+    m_cameraPosition = &position;
+}
+
+void AbstractWindow::update(float dt) {
+    for (auto entity : m_updatables) {
+        entity->update(dt);
+    }
+
+}
+
+void AbstractWindow::checkCollision() {
+//    for(auto* character : m_characters) {
+//        if(character.collisionWallEnable()) {
+//            const sf::FloatRect &hitBox = character.hitBox();
+//            m_world->getBox(hitBox., hitBox.)
+//            float 
+//        }
+//    }
+}
+
+bool AbstractWindow::collisionBottom(const sf::FloatRect& hitBox) {
+//    return containsColliableBox(hitBox)
+}
+
+
+

@@ -8,9 +8,11 @@
 #include "tools/MapVisitor.h"
 #include "graphic/TextureLoader.h"
 #include "SFML/Graphics/Texture.hpp"
+#include "map/ChunkWorld.h"
+#include <iostream>
 
-MapVisitor::MapVisitor(Chunk *chunk)
-: m_chunk(chunk) {
+MapVisitor::MapVisitor(ChunkWorld *chunkWorld)
+: m_map(chunkWorld) {
 }
 
 MapVisitor::~MapVisitor() {
@@ -34,8 +36,8 @@ void MapVisitor::visitTileLayer(tmx::TileLayer& layer) {
         return;
     }
     
-    
-    std::string widthString = layer.getProperty("width", "100");
+    // @TODO
+    std::string widthString = layer.getProperty("width", "2500");
     std::cout << "width " << widthString << std::endl;
 
     int width = atoi(widthString.c_str());
@@ -47,15 +49,25 @@ void MapVisitor::visitTileLayer(tmx::TileLayer& layer) {
         //    unsigned x = i * tilewidth;
         //    unsigned y = j * tileheight;
         unsigned gid = cell.getGID();
-        m_chunk->block(i, j) = gid;
+        k++;
+        if(gid == 0)
+            continue;
         
+        sf::Vector2i coordChunk(i/Chunk::chunkSize,j/Chunk::chunkSize);
+        Chunk *chunk = m_map->load(coordChunk);
+//        std::cout << "id(" << gid << ") chunk(" << coordChunk.x << ":"<< coordChunk.y <<"). pos ( " << i%Chunk::chunkSize << ":"<<j%Chunk::chunkSize << ")"<< std::endl;
+        
+        chunk->setBlock(i%Chunk::chunkSize, j%Chunk::chunkSize, gid);
+//        std::cout << "id(" << chunk->getBlock(i%Chunk::chunkSize, j%Chunk::chunkSize) << ")" << std::endl;
+        
+//        m_map->release(i,j);
         //    if (gid != 0) {
         //      drawGID(x, y, gid);
         //    }
-        k++;
         
 //    std::cout << "test " << widthString << std::endl;
     }
+    std::cout << "fin read" << std::endl;
 }
 
 

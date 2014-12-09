@@ -8,10 +8,24 @@
 #include "map/ChunkLoader.h"
 #include <iostream>
 
-ChunkLoader::ChunkLoader(ChunkWorld &chunkWorld, const sf::Vector2i &center, int space, int size)
-: m_chunkWorld(chunkWorld), m_center(center), m_space(space), m_size(size), m_topLeftCorner(center), m_bottomRightCorner(center) {
-    loadChunk(center);
-    update();
+ChunkLoader::ChunkLoader(ChunkWorld &chunkWorld, const sf::Vector2i &center, int size, int limit)
+: m_chunkWorld(chunkWorld), m_center(center), m_size(size), m_limit(limit), m_topLeftCorner(center), m_bottomRightCorner(center) {
+    int left = m_center.x - size;
+    int right = m_center.x + size;
+    int top = m_center.y - size;
+    int bottom = m_center.y + size;
+    sf::Vector2i coord;
+    for(coord.x = left; coord.x <= right; ++coord.x) {
+        for(coord.y = top; coord.y <= bottom; ++coord.y) {
+            loadChunk(coord);
+        }
+    }
+    m_topLeftCorner.x = left;
+    m_topLeftCorner.y = top;
+    m_bottomRightCorner.x = right;
+    m_bottomRightCorner.y = bottom;
+    
+//    setCenter(sf::Vector2i(2,2));
 }
 
 ChunkLoader::~ChunkLoader() {
@@ -39,25 +53,25 @@ void ChunkLoader::update() {
 void ChunkLoader::deleteOutChunk() {
 
     sf::Vector2i diffTL = m_center - m_topLeftCorner;
-    if (diffTL.x > m_space) {
+    if (diffTL.x > m_limit) {
     std::cout << "delete tlx" << std::endl;
-        for (int i = 0; i < diffTL.x - m_space; ++i)
+        for (int i = 0; i < diffTL.x - m_limit; ++i)
             deleteLeftColumn();
     }
-    if (diffTL.y > m_space) {
+    if (diffTL.y > m_limit) {
     std::cout << "delete tly" << std::endl;
-        for (int i = 0; i < diffTL.y - m_space; ++i)
+        for (int i = 0; i < diffTL.y - m_limit; ++i)
             deleteTopLine();
     }
     sf::Vector2i diffBR = m_bottomRightCorner - m_center;
-    if (diffBR.x > m_space) {
+    if (diffBR.x > m_limit) {
     std::cout << "delete brx" << std::endl;
-        for (int i = 0; i < diffBR.x - m_space; ++i)
+        for (int i = 0; i < diffBR.x - m_limit; ++i)
             deleteRightColumn();
     }
-    if (diffBR.y > m_space) {
+    if (diffBR.y > m_limit) {
     std::cout << "delete bry" << std::endl;
-        for (int i = 0; i < diffBR.y - m_space; ++i)
+        for (int i = 0; i < diffBR.y - m_limit; ++i)
             deleteBottomLine();
     }
 }
@@ -89,7 +103,6 @@ void ChunkLoader::deleteTopLine() {
 }
 
 void ChunkLoader::addInChunk() {
-
     sf::Vector2i diffTL = m_center - m_topLeftCorner;
     if (diffTL.x < m_size) {
      std::cout << "add tlx" << std::endl;
@@ -101,7 +114,7 @@ void ChunkLoader::addInChunk() {
         for (int i = 0; i < m_size - diffTL.y; ++i)
             growTop();
     }
-    sf::Vector2i diffBR = m_bottomRightCorner - m_center;
+    sf::Vector2i diffBR = sf::Vector2i() - m_center;
     if (diffBR.x < m_size) {
       std::cout << "add brx" << std::endl;
        for (int i = 0; i < m_size - diffBR.x; ++i)
