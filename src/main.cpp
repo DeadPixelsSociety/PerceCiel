@@ -14,6 +14,7 @@
 #include "graphic/TextureBlockManager.h"
 #include "map/ChunkLoader.h"
 
+#if 0
 class KeyboardEventHandler : public AbstractKeyboardEventHandler {
 public:
 
@@ -62,9 +63,36 @@ public:
         }
 
 };
+#endif
+
+static constexpr unsigned INITIAL_WIDTH = 800;
+static constexpr unsigned INITIAL_HEIGHT = 600;
 
 int main() {
+  sf::RenderWindow window(sf::VideoMode(INITIAL_WIDTH, INITIAL_HEIGHT), "Perce Ciel");
 
+  tmx::Map *map = tmx::parseMapFile("shared/PerceCiel/maps/MapBasic.tmx");
+
+
+
+  while (window.isOpen()) {
+    sf::Event event;
+
+    while (window.pollEvent(event)) {
+      if (event.type == sf::Event::Closed) {
+        window.close();
+      }
+    }
+
+    window.clear(sf::Color::Red);
+
+
+    window.display();
+  }
+
+  delete map;
+
+#if 0
     // FULLSCREEN WINDOW (EXIT WITH ESCAPE OR MOUSE CLICK)
     // AbstractWindow w("Hello Window !", sf::Vector2i(800, 600), new KeyboardEventHandler(), new MouseEventHandler(), true);
 
@@ -120,10 +148,10 @@ int main() {
 
     ChunkWorld world;
 //    ChunkLoader chunkLoader(world);
-    
+
     MapVisitor visitor(&world);
     map->visitLayers(visitor);
-    
+
 
 //    Chunk c = chunkLoader.getChunk(sf::Vector2i(0,0));
 //    c.block(0,0) = 1;
@@ -133,7 +161,7 @@ int main() {
 //    c2.block(0,0) = 1;
 //    c2.loadGraphic();
 //    c2.t
-    
+
 //    chunk.load();
 
     w.addDrawable(world);
@@ -146,7 +174,7 @@ int main() {
     w.show();
 
     delete map;
-
+#endif
 
     return 0;
 }
