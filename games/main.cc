@@ -10,7 +10,8 @@
 static constexpr unsigned INITIAL_WIDTH = 800;
 static constexpr unsigned INITIAL_HEIGHT = 600;
 
-static constexpr float RATIO = 35.0f;
+// static constexpr float RATIO = 35.0f;
+static constexpr float RATIO = 70.0f;
 
 class Entity {
 public:
@@ -78,10 +79,33 @@ public:
       tmx::Size size = image->getSize();
       tmx::Rect rect = tileset->getCoords(gid, size);
 
-      world->addVertex({ static_cast<float>(x), static_cast<float>(y) }, { static_cast<float>(rect.x), static_cast<float>(rect.y) });
-      world->addVertex({ static_cast<float>(x + 32), static_cast<float>(y) }, { static_cast<float>(rect.x + rect.width), static_cast<float>(rect.y) });
-      world->addVertex({ static_cast<float>(x + 32), static_cast<float>(y + 32) }, { static_cast<float>(rect.x + rect.width), static_cast<float>(rect.y + rect.height) });
-      world->addVertex({ static_cast<float>(x), static_cast<float>(y + 32) }, { static_cast<float>(rect.x), static_cast<float>(rect.y + rect.height) });
+      float xf = static_cast<float>(x);
+      float yf = static_cast<float>(y);
+      float rectx = static_cast<float>(rect.x);
+      float recty = static_cast<float>(rect.y);
+      float rectw = static_cast<float>(rect.width);
+      float recth = static_cast<float>(rect.height);
+
+      world->addVertex({ xf,      yf      }, { rectx,         recty         });
+      world->addVertex({ xf + 32, yf      }, { rectx + rectw, recty         });
+      world->addVertex({ xf + 32, yf + 32 }, { rectx + rectw, recty + recth });
+      world->addVertex({ xf,      yf + 32 }, { rectx,         recty + recth });
+
+      b2BodyDef def;
+      def.position.Set((xf + 16) / RATIO, (yf + 16) / RATIO);
+      def.type = b2_staticBody;
+      b2Body *body = physics->CreateBody(&def);
+
+      b2PolygonShape shape;
+      shape.SetAsBox(32 / 2.0f / RATIO, 32 / 2.0f / RATIO);
+
+      b2FixtureDef fixture;
+      fixture.shape = &shape;
+      fixture.density = 1.0f;
+      fixture.friction = 0.5f;
+      fixture.restitution = 0.0f;
+
+      body->CreateFixture(&fixture);
 
       n++;
     }
@@ -93,18 +117,20 @@ public:
   tmx::Map *map;
   unsigned width;
   World *world;
+  b2World *physics;
 };
 
 class Hero : public Entity {
 public:
-  Hero(const std::string& filename, float x, float y, b2World& world) {
+  Hero(const std::string& filename, float x, float y, b2World& physics) {
     bool loaded = m_texture.loadFromFile(filename);
     assert(loaded);
 
     b2BodyDef def;
     def.position.Set(x / RATIO, y / RATIO);
     def.type = b2_dynamicBody;
-    m_body = world.CreateBody(&def);
+    def.fixedRotation = true;
+    m_body = physics.CreateBody(&def);
 
     b2PolygonShape shape;
     shape.SetAsBox(32 / 2.0f / RATIO, 70 / 2.0f / RATIO);
@@ -112,14 +138,31 @@ public:
     b2FixtureDef fixture;
     fixture.shape = &shape;
     fixture.density = 1.0f;
-    fixture.friction = 0.5f;
+    fixture.friction = 0.0f;
     fixture.restitution = 0.0f;
 
     m_body->CreateFixture(&fixture);
+
+//     b2PolygonShape sensorShape;
+//     sensorShape.SetAsBox(16 / 2.0f / RATIO, 2 / 2.0f / RATIO);
+//
+//     b2FixtureDef sensor;
+//     sensor.shape = ...;
+//     sensor.isSensor = true;
+//
+//     m_sensor = m_body->CreateFixture(&sensor);
   }
 
-  void setPosition(const sf::Vector2f& position) {
-    m_position = position;
+  void goLeft() {
+    m_body->SetLinearVelocity({ -3.0f, 0.0f });
+  }
+
+  void goRight() {
+    m_body->SetLinearVelocity({ +3.0f, 0.0f });
+  }
+
+  void jump() {
+    m_body->ApplyLinearImpulse({ 0.0f, -2.0f }, m_body->GetLocalCenter(), true);
   }
 
   virtual void update(float dt) override {
@@ -128,7 +171,7 @@ public:
   virtual void render(sf::RenderWindow& window) override {
     b2Vec2 pos = m_body->GetPosition();
 
-    std::printf("%f,%f  %f,%f\n", pos.x, pos.y, pos.x * RATIO, pos.y * RATIO);
+//     std::printf("%f,%f  %f,%f\n", pos.x, pos.y, pos.x * RATIO, pos.y * RATIO);
 
     sf::CircleShape shape(2.0f);
     shape.setPosition(pos.x * RATIO, pos.y * RATIO);
@@ -139,14 +182,15 @@ public:
     sf::Sprite sprite;
     sprite.setTexture(m_texture);
     sprite.setPosition(pos.x * RATIO, pos.y * RATIO);
+    sprite.setOrigin(64.0f, 256.0f - 2 * 35.0f);
     sprite.scale({ 0.5f, 0.5f });
     window.draw(sprite);
   }
 
 private:
-  sf::Vector2f m_position;
   sf::Texture m_texture;
   b2Body *m_body;
+  b2Fixture *m_sensor;
 };
 
 int main() {
@@ -164,6 +208,7 @@ int main() {
   visitor.map = map;
   visitor.width = 2500;
   visitor.world = &world;
+  visitor.physics = &physics;
 
   map->visitLayers(visitor);
 
@@ -204,11 +249,17 @@ int main() {
             break;
           case sf::Keyboard::Left:
           case sf::Keyboard::Q:
-            center_x -= 10;
+//             center_x -= 10;
+            hero.goLeft();
             break;
           case sf::Keyboard::Right:
           case sf::Keyboard::D:
-            center_x += 10;
+//             center_x += 10;
+            hero.goRight();
+            break;
+
+          case sf::Keyboard::Space:
+            hero.jump();
             break;
 
           default:
